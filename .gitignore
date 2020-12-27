@@ -1,2 +1,7 @@
-.pyenv/
 __pycache__/
+.python-version
+.ipynb_checkpoints
+.vscode
+
+# sambvca input files
+*.inp
