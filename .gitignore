@@ -4,4 +4,4 @@ __pycache__/
 .vscode
 
 # sambvca input files
-*.inp
+py2sambvca_input*
