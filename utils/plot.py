@@ -63,7 +63,7 @@ for c in cset2.collections:
 plt.colorbar(cset1)
 plt.show()
 
-out_filename="coloured_plt"
-plt.savefig(out_filename+".jpg")
+# out_filename="coloured_plt"
+# plt.savefig(out_filename+".jpg")
 
-print(f"Info: PNG map image in file {out_filename}.jpg")
+# print(f"Info: PNG map image in file {out_filename}.jpg")

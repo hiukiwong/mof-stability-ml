@@ -4,7 +4,7 @@ import time
 from config.path_handler import input_files_directory
 from config.path_handler import output_files_directory
 from config.path_handler import sambvca21_full_path
-from py2sambvca.py2sambvca import py2sambvca
+from py2_2.py2_2 import Py2sambvca
 from utils import plot
 from utils import str_handling
 
@@ -66,7 +66,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         print(f"inp_filepath: {inp_filepath}")
         print(f"out_filepath: {out_filepath}")
 
-        buried_vol = py2sambvca(
+        P2S = Py2sambvca(
             xyz_filepath=xyz_fullpath,
             sphere_center_atom_ids=center_atom,
             z_ax_atom_ids=z_ax_atoms,
@@ -74,11 +74,11 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
             path_to_sambvcax=str(sambvca21_full_path),
         )
 
-        buried_vol.write_input(inp_filepath)
-        buried_vol.calc(inp_filepath)
-        buried_volume = buried_vol.get_buried_vol(out_filepath)
+        P2S.write_input(inp_filepath)
+        P2S.calc(inp_filepath)
+        results_dict = P2S.extract_calc_results(out_filepath)
 
-        print(f"Buried volume = {buried_volume}%")
+        print(f"Buried volume = {results_dict[buried_volume_percent]}%")
 
         # Generate and Save filled contour plot.
         top_dat_filename = full_tag + "-TopSurface.dat"
