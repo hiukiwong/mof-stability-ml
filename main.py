@@ -78,7 +78,17 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         P2S.calc(inp_filepath)
         results_dict = P2S.extract_calc_results(out_filepath)
 
-        print(f"Buried volume = {results_dict[buried_volume_percent]}%")
+        buried_volume_percent = results_dict["Buried Volume %"]
+        print(f"%Buried volume = {buried_volume_percent}%")
+
+        buried_volume_num = results_dict["Buried Volume"]
+        print(f"Buried volume = {buried_volume_num}Angs^3")
+
+        quad_num = results_dict["Quadrant Data"]
+        print(f"Quadrant Data = {quad_num}%")
+
+        octant_num = results_dict["Octant Data"]
+        print(f"Octant Data = {octant_num}%")
 
         # Generate and Save filled contour plot.
         top_dat_filename = full_tag + "-TopSurface.dat"
