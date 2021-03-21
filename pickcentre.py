@@ -61,7 +61,7 @@ def remove_brackets_from_line(line):
     return (line)
 #[x,y] = read_cif_file(tag, True)
 
-[x,y] = read_cif_file('/home/hiuki/mof-stability-ml/Movies/System_0/Framework_0_initial_2_2_2_P1.cif', True)
+[x,y] = read_cif_file('/home/hiuki/mof-stability-ml/RASPA Output/IRMOF-1.cif', True)
 
 
 def calc_number_of_unit_cells(unit_cell_dimensions):
