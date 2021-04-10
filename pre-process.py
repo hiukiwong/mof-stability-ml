@@ -16,23 +16,32 @@ def write_raspa_input_file(simulation_type, number_of_cycles, print_every, frame
 
 write_raspa_input_file("MonteCarlo", 1, 1, 0, "IRMOF-1", [2, 2, 2])
 
-subprocess.run(["/home/hiuki/RASPA/src/simulate", "simulation.input"])
+subprocess.run(["/home/hiuki/RASPA2/src/simulate", "simulation.input"])
 shutil.rmtree("VTK")
 shutil.rmtree("Restart")
 shutil.rmtree("Output")
-cif_path = "Movies/System_0/Framework_0_initial_2_2_2_P1.cif"
-while not os.path.exists(cif_path):
-    time.sleep(20)
+raspa_output_folder_path = "RASPA_Output/"
+if not os.path.exists(raspa_output_folder_path):
+    os.makedirs(raspa_output_folder_path)
 
-if os.path.isfile(cif_path):
-    for Cleanup in glob.glob("/home/hiuki/mof-stability-ml/Movies/System_0/*.*"):
-        if not Cleanup.endswith("Framework_0_initial_2_2_2_P1.cif"):
-            os.remove(Cleanup)
+cif_filename = "Framework_0_initial_2_2_2_P1.cif"
+cif_src_path = os.path.join("Movies/System_0/", cif_filename)
 
+def name_of_mof(filepath: str) -> str:
+    with open(filepath, "r") as f:
+        first_line = f.readline()
+        mof_name = first_line.split("data_", 1)[1].split("\n", 1)[0]
+        f.close()
+    return mof_name
 
-p = Path('Movies/System_0/Framework_0_initial_2_2_2_P1.cif').absolute()
-parent_dir = p.parents[1]
-p.rename(parent_dir/p.name)
-os.rename('Movies', 'RASPA Output')
-shutil.rmtree('RASPA Output/System_0')
-os.rename('RASPA Output/Framework_0_initial_2_2_2_P1.cif', 'RASPA Output/IRMOF-1.cif')
+mof_name = name_of_mof(cif_src_path)
+cif_dest_path = os.path.join(raspa_output_folder_path, f"{mof_name}.cif")
+xyz_dest_path = os.path.join(raspa_output_folder_path, f"{mof_name}.xyz")
+
+for filename in os.listdir("Movies/System_0"):
+    if filename.endswith("Framework_0_initial_2_2_2_P1.cif"):
+        shutil.copy(cif_src_path, cif_dest_path)
+
+shutil.rmtree("Movies")
+
+subprocess.run(["obabel",  "-icif", cif_dest_path, "-oxyz", "-O", xyz_dest_path])
