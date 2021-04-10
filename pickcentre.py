@@ -1,7 +1,7 @@
 import os, re, math
 import numpy as np
 
-with open('RASPA Output/IRMOF-1.cif', "r") as file:
+with open('RASPA_Output/IRMOF-1.cif', "r") as file:
     lines = file.readlines()
     cell_a = re.compile(r".*_cell_length_a    (\d*\d*\.\d*\d*\d*)")
     cell_b = re.compile(r".*_cell_length_b    (\d*\d*\.\d*\d*\d*)")
@@ -34,4 +34,4 @@ alpha_val = math.radians(alpha_dval)
 beta_val = math.radians(beta_dval)
 gamma_val = math.radians(gamma_dval)
 
-r = math.sqrt(a_dim**2+b_dim**2+c_dim**2+2*a_dim*b_dim*(math.cos(gamma_val))+2*a_dim*c_dim*(math.cos(beta_val))+2*b_dim*c_dim*(math.cos(alpha_val)))
+# r = math.sqrt(a_dim**2+b_dim**2+c_dim**2+2*a_dim*b_dim*(math.cos(gamma_val))+2*a_dim*c_dim*(math.cos(beta_val))+2*b_dim*c_dim*(math.cos(alpha_val)))
