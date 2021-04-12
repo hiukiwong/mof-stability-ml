@@ -1,37 +1,47 @@
-import os, re, math
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
 import numpy as np
+from scipy.spatial import distance
 
-with open('RASPA_Output/IRMOF-1.cif', "r") as file:
-    lines = file.readlines()
-    cell_a = re.compile(r".*_cell_length_a    (\d*\d*\.\d*\d*\d*)")
-    cell_b = re.compile(r".*_cell_length_b    (\d*\d*\.\d*\d*\d*)")
-    cell_c = re.compile(r".*_cell_length_c    (\d*\d*\.\d*\d*\d*)")
-    cell_alpha = re.compile(r".*_cell_angle_alpha (\d*\d*)")
-    cell_beta = re.compile(r".*_cell_angle_beta  (\d*\d*)")
-    cell_gamma = re.compile(r".*_cell_angle_gamma (\d*\d*)")
-    for line_num, line in enumerate(lines):
-        cell_a_match = cell_a.search(line)
-        cell_b_match = cell_b.search(line)
-        cell_c_match = cell_c.search(line)
-        cell_alpha_match = cell_alpha.search(line)
-        cell_beta_match = cell_beta.search(line)
-        cell_gamma_match = cell_gamma.search(line)
+metal_atoms_set = {'zn'}
 
-        if cell_a_match:
-            a_dim = float(cell_a_match[1])
-        elif cell_b_match:
-            b_dim = float(cell_b_match[1])
-        elif cell_c_match:
-            c_dim = float(cell_c_match[1])
-        elif cell_alpha_match:
-            alpha_dval = float(cell_alpha_match[1])
-        elif cell_beta_match:
-            beta_dval = float(cell_beta_match[1])
-        elif cell_gamma_match:
-            gamma_dval = float(cell_gamma_match[1])
+with open('RASPA_Output/IRMOF-1.xyz') as file:
+    num_atoms = int(file.readline())
+    MOF_name = file.readline()
+    print(num_atoms)
+    print(MOF_name)
+        
+    atom = []
+    atom_ids = []
+    points = []
+    
+    atom_id = 1
 
-alpha_val = math.radians(alpha_dval)
-beta_val = math.radians(beta_dval)
-gamma_val = math.radians(gamma_dval)
+    for line in file:
+        atom_name, x, y, z = line.split()
+        atom_name = atom_name.lower()
+        atom.append((atom_name, atom_id))
 
-# r = math.sqrt(a_dim**2+b_dim**2+c_dim**2+2*a_dim*b_dim*(math.cos(gamma_val))+2*a_dim*c_dim*(math.cos(beta_val))+2*b_dim*c_dim*(math.cos(alpha_val)))
+        # Extract metal atoms to visualise on a 3D scatter plot.
+        if atom_name in metal_atoms_set:
+            x = float(x)
+            y = float(y)
+            z = float(z)
+            atom_ids.append(atom_id)
+            point = (x, y, z)
+            points.append(point)
+        
+        atom_id += 1
+
+x_locs = [p[0] for p in points]
+y_locs = [p[1] for p in points]
+z_locs = [p[2] for p in points]
+
+points = np.array(points)
+centroid = points.mean(axis=0)
+
+
+dist_array = [distance.euclidean(centroid, point) for point in points]
+print(min(dist_array), np.argmin(dist_array))
+print(atom_ids[197])
+print(atom[2579])
