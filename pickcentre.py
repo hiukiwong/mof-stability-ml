@@ -1,47 +1,15 @@
-from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.spatial import distance
+from refdata.metal_set import metal_symbols
 
-metal_atoms_set = {'zn'}
+df = pd.read_table('RASPA_Output/IRMOF-1.xyz', skiprows=2, delim_whitespace=True, names=['atom', 'x','y','z'])
+centroid=[np.mean(df['x'].tolist(), axis=0), np.mean(df['y'].tolist(), axis=0), np.mean(df['z'].tolist(), axis=0)]
 
-with open('RASPA_Output/IRMOF-1.xyz') as file:
-    num_atoms = int(file.readline())
-    MOF_name = file.readline()
-    print(num_atoms)
-    print(MOF_name)
-        
-    atom = []
-    atom_ids = []
-    points = []
-    
-    atom_id = 1
+df['xyz']= df[['x','y','z']].values.tolist()
 
-    for line in file:
-        atom_name, x, y, z = line.split()
-        atom_name = atom_name.lower()
-        atom.append((atom_name, atom_id))
-
-        # Extract metal atoms to visualise on a 3D scatter plot.
-        if atom_name in metal_atoms_set:
-            x = float(x)
-            y = float(y)
-            z = float(z)
-            atom_ids.append(atom_id)
-            point = (x, y, z)
-            points.append(point)
-        
-        atom_id += 1
-
-x_locs = [p[0] for p in points]
-y_locs = [p[1] for p in points]
-z_locs = [p[2] for p in points]
-
-points = np.array(points)
-centroid = points.mean(axis=0)
-
-
-dist_array = [distance.euclidean(centroid, point) for point in points]
-print(min(dist_array), np.argmin(dist_array))
-print(atom_ids[197])
-print(atom[2579])
+df['distance']=df['xyz'].apply(lambda row: distance.euclidean(centroid, row))
+df1=df.loc[df['atom'].isin(metal_symbols)]
+df.index+=1
+df[df['distance']==df1['distance'].min()]
