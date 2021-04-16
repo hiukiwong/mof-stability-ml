@@ -16,7 +16,7 @@ def write_raspa_input_file(simulation_type, number_of_cycles, print_every, frame
 
 write_raspa_input_file("MonteCarlo", 1, 1, 0, "IRMOF-1", [2, 2, 2])
 
-subprocess.run(["/home/hiuki/RASPA2/src/simulate", "simulation.input"])
+subprocess.run(["/home/hiuki/RASPA/src/simulate", "simulation.input"])
 shutil.rmtree("VTK")
 shutil.rmtree("Restart")
 shutil.rmtree("Output")

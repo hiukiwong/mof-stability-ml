@@ -1,7 +1,7 @@
 data_IRMOF-1
 
 _audit_creation_method RASPA-1.0
-_audit_creation_date 2021-4-10
+_audit_creation_date 2021-4-14
 _audit_author_name 'hiuki'
 
 _citation_author_name        'M. Eddaoudi, J. Kim, N. Rosi, D. Vodak, J. Wachter, M. O. Keeffe, and O.M. Yaghi'
