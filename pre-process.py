@@ -1,4 +1,9 @@
-import os, glob, shutil, subprocess, sys, time
+import os
+import glob
+import shutil
+import subprocess
+import sys
+import time
 import numpy as np
 from pathlib import Path
 
