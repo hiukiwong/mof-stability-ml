@@ -30,3 +30,10 @@ xz_plane_ids = list(xz_plane_atoms.index)
 print(f'Centre atom ID: {central_id}')
 print(f'Z axis atom IDs: {z_ax_ids}')
 print(f'XZ plane atom IDs: {xz_plane_ids}')
+
+# center_atom = pick_center_id()
+# z_axis_ids = pick_z_ids(center_atom.x, center_atom.y, center_atom.z)
+# xz_plane_ids = pick_xz_ids(center_atom.x, center_atom.y, center_atom.z)
+
+# def pick_ids() -> list:
+#     return [center_id, z_ax_ids, xz_plane_ids]

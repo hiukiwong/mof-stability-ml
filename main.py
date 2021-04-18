@@ -7,6 +7,8 @@ from config.path_handler import sambvca21_full_path
 from py2_2.py2_2 import Py2sambvca
 from utils import plot
 from utils import str_handling
+# from pickIDs import pick_center_id
+# from pickIDs import pick_z_ids
 
 
 _DEBUG = True
@@ -32,6 +34,8 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         center_atom = [130]
         z_ax_atoms = [123]
         xz_plane_atoms = [57]
+        # xyz_fullpath = os.path.join(input_files_directory, xyz_filename)
+        # [center_atom, z_ax_atoms, xz_plane_atoms] = pickIDs.pick_id(xyz_fullpath)
 
         center_atom_str = "c" + str_handling.atoms_to_string(center_atom)
         z_ax_atoms_str = "z" + str_handling.atoms_to_string(z_ax_atoms)
