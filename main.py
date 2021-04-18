@@ -25,6 +25,11 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
     except AssertionError:
         print("SambVca calculator file not present.")
 
+    # pre-process.py here? Do we still need the for loop below if we
+    # only have 1 .xyz file at a time? Do we want to delete the .cif?
+    # Or should we just check that the file name ends with .xyz? endswith()
+    # Which ordering is better for scaling up.
+
     for xyz_filename in os.listdir(input_files_directory):
 
         # Start the timer for this calculation.
