@@ -52,7 +52,7 @@ sim_input_file_path = write_raspa_input_file(
     framework_name=mof_name,
     unit_cells=[2, 2, 2]
 )
-path_to_raspa = "/home/hiuki/RASPA2/src/simulate"
+path_to_raspa = "/home/hiuki/RASPA/src/simulate"
 subprocess.run([path_to_raspa, sim_input_file_path])
 cif_dest_path, xyz_dest_path = raspa_create_cif(mof_name)
 subprocess.run(["obabel",  "-icif", cif_dest_path, "-oxyz", "-O", xyz_dest_path])

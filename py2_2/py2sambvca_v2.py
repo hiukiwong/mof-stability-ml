@@ -196,8 +196,8 @@ class Py2sambvca:
         with open(out_filepath, "r") as file:
             lines = file.readlines()
 
-            vbur_percent_pattern = re.compile(r".*The %V Bur of the molecule is:     (\d*\.\d*)")
-            vbur_pattern = re.compile(r".*Buried volume =      (\d*\.\d*)")
+            vbur_percent_pattern = re.compile(r".*The %V Bur of the molecule is:[ ]{1,}(\d*\.\d*)")
+            vbur_pattern = re.compile(r".*Buried volume =[ ]{1,}(\d*\.\d*)")
             quad_pattern = re.compile(r".*Quadrants analysis")
             oct_pattern = re.compile(r".*Octants analysis")
 

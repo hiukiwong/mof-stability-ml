@@ -4,7 +4,7 @@ import time
 from config.path_handler import input_files_directory
 from config.path_handler import output_files_directory
 from config.path_handler import sambvca21_full_path
-from py2_2.py2_2 import Py2sambvca
+from py2_2.py2sambvca_v2 import Py2sambvca
 from utils import plot
 from utils import str_handling
 # from pickIDs import pick_center_id
@@ -36,9 +36,9 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         start_time = time.time()
 
         # TODO: Logic to parse the xyz files and pick centres go here
-        center_atom = [130]
-        z_ax_atoms = [123]
-        xz_plane_atoms = [57]
+        center_atom = [243]
+        z_ax_atoms = [289]
+        xz_plane_atoms = [225]
         # xyz_fullpath = os.path.join(input_files_directory, xyz_filename)
         # [center_atom, z_ax_atoms, xz_plane_atoms] = pickIDs.pick_id(xyz_fullpath)
 
