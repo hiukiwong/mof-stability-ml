@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.spatial import distance
 from refdata.metal_set import metal_symbols
 
-xyz_dest_path = 'RASPA_Output/IRMOF-1.xyz'
+xyz_dest_path = 'RASPA_Output/UIO-66.xyz'
 
 def xyz_to_df(xyz_dest_path):
     all_atoms_df = pd.read_table(xyz_dest_path, skiprows=2, delim_whitespace=True, names=['atom', 'x', 'y', 'z'])
@@ -12,7 +12,7 @@ def xyz_to_df(xyz_dest_path):
     all_atoms_df['xyz'] = tuple(all_atoms_df[['x', 'y', 'z']].values)
     return all_atoms_df
 
-all_atoms_df = xyz_to_df('RASPA_Output/IRMOF-1.xyz')
+all_atoms_df = xyz_to_df('RASPA_Output/UIO-66.xyz')
 
 def determine_centroid(all_atoms_df):
     centroid = (all_atoms_df['x'].mean(), all_atoms_df['y'].mean(), all_atoms_df['z'].mean())

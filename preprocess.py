@@ -43,7 +43,7 @@ def raspa_create_cif(mof_name):
     return cif_dest_path, xyz_dest_path
 
 
-mof_name = "IRMOF-1"
+mof_name = "UIO-66"
 sim_input_file_path = write_raspa_input_file(
     simulation_type="MonteCarlo",
     number_of_cycles=1,
