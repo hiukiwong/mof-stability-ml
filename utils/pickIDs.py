@@ -8,7 +8,7 @@ from refdata.metal_set import metal_symbols
 def xyz_to_df(xyz_dest_path):
     all_atoms_df = pd.read_table(xyz_dest_path, skiprows=2, delim_whitespace=True, names=['atom', 'x', 'y', 'z'])
     num_atoms = len(all_atoms_df)
-    # all_atoms_df.index = pd.RangeIndex(start=1, stop=num_atoms+1, step=1)
+    all_atoms_df.index = pd.RangeIndex(start=1, stop=num_atoms+1, step=1)
     all_atoms_df['xyz'] = tuple(all_atoms_df[['x', 'y', 'z']].values)
     return all_atoms_df
 

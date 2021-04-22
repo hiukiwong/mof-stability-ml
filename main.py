@@ -43,7 +43,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         print("SambVca calculator file not present.")
 
 
-mof_name = "UIO-66"
+mof_name = "IRMOF-1"
 
 sim_input_file_path = write_raspa_input_file(
     simulation_type="MonteCarlo",
@@ -62,8 +62,8 @@ cif_dest_path, xyz_dest_path = raspa_create_cif(mof_name)
 
 subprocess.run(["obabel",  "-icif", cif_dest_path, "-oxyz", "-O", xyz_dest_path])
 
-xyz_dest_path = 'RASPA_Output/UIO-66.xyz'
-all_atoms_df = xyz_to_df('RASPA_Output/UIO-66.xyz')
+xyz_dest_path = 'RASPA_Output/IRMOF-1.xyz'
+all_atoms_df = xyz_to_df('RASPA_Output/IRMOF-1.xyz')
 closest_metal_atoms_df = determine_centroid(all_atoms_df)
 central_id, centre_atom = pick_centre_id(closest_metal_atoms_df)
 z_ax_ids, x_wanted, y_wanted, z_wanted = pick_z_ids(central_id, centre_atom, all_atoms_df)
