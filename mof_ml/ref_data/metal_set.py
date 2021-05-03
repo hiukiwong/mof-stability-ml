@@ -1,4 +1,5 @@
 metal_symbols = {
+    "B",
     "Li", "Na", "K", "Rb", "Cs", "Fr",
     "Be", "Mg", "Ca", "Sr", "Ba", "Ra",
     "Sc",

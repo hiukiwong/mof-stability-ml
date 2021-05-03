@@ -10,6 +10,8 @@ from py2sambvca_v2 import Py2sambvca
 from utils import plot
 from utils import str_handling
 
+from utils.dimensions import read_dimensions
+
 from utils.preprocess import write_raspa_input_file
 from utils.preprocess import raspa_create_cif
 
@@ -27,7 +29,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
 
     print("==================RUNNING RASPA==================")
 
-    mof_name = "IRMOF-1"
+    mof_name = "UIO-66"
 
     sim_input_file_path = write_raspa_input_file(
         simulation_type="MonteCarlo",
@@ -56,16 +58,18 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         print("path supplied to SambVca calculator is not of valid type 'Path'.")
     except AssertionError:
         print("SambVca calculator file not present.")
+    
+    mof_name = "UIO-66"
 
-    xyz_dest_path = "..//RASPA_Output//IRMOF-1.xyz"
-    all_atoms_df = xyz_to_df("..//RASPA_Output//IRMOF-1.xyz")
-    closest_metal_atoms_df = determine_centroid(all_atoms_df)
+    xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/UIO-66.xyz"
+    all_atoms_df = xyz_to_df(xyz_dest_path)
+    closest_metal_atoms_df, all_ligand_atoms_df = determine_centroid(all_atoms_df)
     central_id, centre_atom = pick_centre_id(closest_metal_atoms_df)
     z_ax_ids, z_axis_atoms = pick_z_ids (central_id, centre_atom, all_atoms_df)
-    xz_plane_ids = pick_xz_ids(z_ax_ids, z_axis_atoms, all_atoms_df)
+    xz_plane_ids = pick_xz_ids(central_id, centre_atom, all_atoms_df, all_ligand_atoms_df)
 
     print(central_id, z_ax_ids, xz_plane_ids)
-
+    # print(all_ligand_atoms_df)
 
     # Start the timer for this calculation.
     start_time = time.time()
@@ -73,6 +77,9 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
     center_atom = central_id
     z_ax_atoms = [z_ax_ids[0]]
     xz_plane_atoms = [xz_plane_ids[0]]
+    # center_atom = [162]
+    # z_ax_atoms = [66]
+    # xz_plane_atoms = [159]
     print(center_atom, z_ax_atoms, xz_plane_atoms)
 
     center_atom_str = "c" + str_handling.atoms_to_string(center_atom)
@@ -107,7 +114,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
     print(f"out_filepath: {out_filepath}")
 
     P2S = Py2sambvca(
-        xyz_filepath="../Inputs/09010N2.xyz",
+        xyz_filepath=xyz_dest_path,
         sphere_center_atom_ids=central_id,
         z_ax_atom_ids=z_ax_atoms,
         xz_plane_atoms_ids=xz_plane_atoms,

@@ -20,8 +20,7 @@ Checking: Atoms defining the sphere center :
 Checking : No. of atoms defining the Z-axis :              1
  2609
 Checking : No. of atoms defining the XZ-plane :            1
-  881
- Checking: Molecule will be aligned along the Z+ direction
+   21
  Checking: Vbur sphere radius :            3.500
  Checking: Displacement from origin :      0.000
  Checking: Bin width :                     0.100

@@ -47,7 +47,7 @@ class Py2sambvca:
         displacement: float = 0.0,
         mesh_size: float = 0.10,
         remove_H: int = 1,
-        orient_z: int = 1,
+        orient_z: int = 0,
         write_surf_files: int = 1,
         path_to_sambvcax: str = "/path/to/executable/sambvca.x",
     ) -> None:
@@ -200,6 +200,15 @@ class Py2sambvca:
             vbur_pattern = re.compile(r".*Buried volume =[ ]{1,}(\d*\.\d*)")
             quad_pattern = re.compile(r".*Quadrants analysis")
             oct_pattern = re.compile(r".*Octants analysis")
+            file.close()
+
+        outputs = {
+            "Buried Volume %": None,
+            "Buried Volume": None,
+            "Quadrant Data": None,
+            "Octant Data": None,
+        }
+
 
         for line_num, line in enumerate(lines):
             vbur_percent_match = vbur_percent_pattern.search(line)
@@ -208,16 +217,16 @@ class Py2sambvca:
             oct_match = oct_pattern.search(line)
 
             if vbur_match:
-                buried_volume = float(vbur_match[1])
+                outputs["Buried Volume"] = float(vbur_match[1])
             elif vbur_percent_match:
-                buried_volume_percent = float(vbur_percent_match[1])
+                outputs["Buried Volume %"] = float(vbur_percent_match[1])
             elif quad_match:
                 start = line_num + 2
                 end = start + 4
                 quad_data = [
                     list(map(str, v.replace("\n", "").strip().split())) for v in lines[start:end]
                 ]
-                quad_df = pd.DataFrame(
+                outputs["Quadrant Data"] = pd.DataFrame(
                     quad_data, columns=["Quadrant", "Vf", "Vb", "Vt", "%Vf", "%Vb"]
                 )
             elif oct_match:
@@ -226,14 +235,11 @@ class Py2sambvca:
                 oct_data = [
                     list(map(str, v.replace("\n", "").strip().split())) for v in lines[start:end]
                 ]
-                oct_df = pd.DataFrame(oct_data, columns=["Octant", "Vf", "Vb", "Vt", "%Vf", "%Vb"])
+                outputs["Octant Data"] = pd.DataFrame(oct_data, columns=["Octant", "Vf", "Vb", "Vt", "%Vf", "%Vb"])
 
-        return {
-            "Buried Volume %": buried_volume_percent,
-            "Buried Volume": buried_volume,
-            "Quadrant Data": quad_df,
-            "Octant Data": oct_df,
-        }
+        if any(val is None for val in list(outputs.values())):
+            raise ValueError("Some values are missing, please check the .out file manually.")
+        return outputs
 
     @staticmethod
     def clean_files() -> None:

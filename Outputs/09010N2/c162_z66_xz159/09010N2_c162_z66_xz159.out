@@ -16,12 +16,11 @@
 Checking: No. of atoms to be removed :                     0
 Checking: No. of atoms defining the sphere center :        1
 Checking: Atoms defining the sphere center :
- 2613
+  162
 Checking : No. of atoms defining the Z-axis :              1
- 2609
+   66
 Checking : No. of atoms defining the XZ-plane :            1
-  881
- Checking: Molecule will be aligned along the Z+ direction
+  159
  Checking: Vbur sphere radius :            3.500
  Checking: Displacement from origin :      0.000
  Checking: Bin width :                     0.100
@@ -328,4 +327,237 @@ C      17.22888   9.94710   5.13098
 C      11.08145  -0.70057   5.13098
 C      -6.14743   9.24653   5.13098
 C       0.00000  19.89420   5.13098
- wrong atoms to define geometry center
+
+Results: Coordinates of rotated frame :
+         192
+crystal                                
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+H           NaN       NaN       NaN
+H           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+B           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+O           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+C           NaN       NaN       NaN
+
+Results : Volumes in Angs^3
+
+       N of voxels examined :          179579
+       Volume of voxel      :       0.0010000
+
+
+   V Free    V Buried   V Total   V Exact
+     179.4       0.0     179.4     179.6
+
+    Buried volume =       0.00 Angs^3
+
+   %V Free   %V Buried  % V Tot/V Ex
+     100.0       0.0      99.9
+
+    The %V Bur of the molecule is:      0.0
+
+                 Quadrants analysis
+ Quadrant     V f     V b     V t    %V f    %V b
+ SW          44.9     0.0    44.9   100.0     0.0
+ NW          44.9     0.0    44.9   100.0     0.0
+ NE          44.9     0.0    44.9   100.0     0.0
+ SE          44.9     0.0    44.9   100.0     0.0
+
+                   Octants analysis
+ Octant       V f      V b    V t    %V f    %V b
+ SW-z        22.4     0.0    22.4   100.0     0.0
+ NW-z        22.4     0.0    22.4   100.0     0.0
+ NE-z        22.4     0.0    22.4   100.0     0.0
+ SE-z        22.4     0.0    22.4   100.0     0.0
+ SW+z        22.4     0.0    22.4   100.0     0.0
+ NW+z        22.4     0.0    22.4   100.0     0.0
+ NE+z        22.4     0.0    22.4   100.0     0.0
+ SE+z        22.4     0.0    22.4   100.0     0.0
+
+  No. of frames analyzed :            1
+
+ Normal termination
