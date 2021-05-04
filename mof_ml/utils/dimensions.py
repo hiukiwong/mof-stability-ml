@@ -1,7 +1,6 @@
 import os, re, math
 import numpy as np
 
-cif_dest_path="/home/hiuki/mof-stability-ml/RASPA_Output/IRMOF-1.cif"
 
 def read_dimensions(cif_dest_path):
     with open(cif_dest_path, "r") as file:
@@ -38,7 +37,7 @@ def read_dimensions(cif_dest_path):
     gamma_val = math.radians(gamma_dval)
     return a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val
 
-def get_transformation_matrix(all_atoms_df, a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val):
+def get_transformation_matrix(a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val):
     cosa = np.cos(alpha_val)
     sina = np.sin(alpha_val)
     cosb = np.cos(beta_val)
@@ -48,7 +47,7 @@ def get_transformation_matrix(all_atoms_df, a_dim, b_dim, c_dim, alpha_val, beta
     volume = 1.0 - cosa**2.0 - cosb**2.0 - cosg**2.0 + 2.0 * cosa * cosb * cosg
     volume = np.sqrt(volume)
     r = np.zeros((3, 3))
-    r[0, 0] = 1.0 / a
+    r[0, 0] = 1.0 / a_dim
     r[0, 1] = -cosg / (a_dim * sing)
     r[0, 2] = (cosa * cosg - cosb) / (a_dim * volume * sing)
     r[1, 1] = 1.0 / (b_dim * sing)
@@ -57,8 +56,8 @@ def get_transformation_matrix(all_atoms_df, a_dim, b_dim, c_dim, alpha_val, beta
     return r
 
 
-a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val=read_dimensions(cif_dest_path)
-r = get_transformation_matrix(a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val)
-print(r)
+
+# print(a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val)
+# print(r)
 
 # r = math.sqrt(a_dim**2+b_dim**2+c_dim**2+2*a_dim*b_dim*(math.cos(gamma_val))+2*a_dim*c_dim*(math.cos(beta_val))+2*b_dim*c_dim*(math.cos(alpha_val)))

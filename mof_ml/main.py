@@ -62,11 +62,15 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
     mof_name = "UIO-66"
 
     xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/UIO-66.xyz"
+
+    # a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val=read_dimensions(cif_dest_path)
+    # r = get_transformation_matrix(a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val)
+
     all_atoms_df = xyz_to_df(xyz_dest_path)
     closest_metal_atoms_df, all_ligand_atoms_df = determine_centroid(all_atoms_df)
     central_id, centre_atom = pick_centre_id(closest_metal_atoms_df)
     z_ax_ids, z_axis_atoms = pick_z_ids (central_id, centre_atom, all_atoms_df)
-    xz_plane_ids = pick_xz_ids(central_id, centre_atom, all_atoms_df, all_ligand_atoms_df)
+    xz_plane_ids = pick_xz_ids(central_id, centre_atom, all_atoms_df)
 
     print(central_id, z_ax_ids, xz_plane_ids)
     # print(all_ligand_atoms_df)
