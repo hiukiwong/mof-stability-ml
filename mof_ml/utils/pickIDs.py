@@ -16,10 +16,9 @@ def determine_centroid(all_atoms_df: pd.DataFrame) -> pd.DataFrame:
     centroid = (all_atoms_df['x'].mean(), all_atoms_df['y'].mean(), all_atoms_df['z'].mean())
     all_atoms_df['distance'] = all_atoms_df['xyz'].apply(lambda row: distance.euclidean(centroid, row))
     all_metal_atoms_df = all_atoms_df.loc[all_atoms_df['atom'].isin(metal_symbols)]
-    all_ligand_atoms_df = all_atoms_df.loc[~all_atoms_df['atom'].isin(metal_symbols)]
     distance_column = all_metal_atoms_df['distance']
     closest_metal_atoms_df = all_metal_atoms_df[distance_column == distance_column.min()]
-    return closest_metal_atoms_df, all_ligand_atoms_df
+    return closest_metal_atoms_df, all_metal_atoms_df
 
 
 def pick_centre_id(closest_metal_atoms_df) -> list:

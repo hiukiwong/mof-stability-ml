@@ -15,11 +15,11 @@ from utils.dimensions import read_dimensions
 from utils.preprocess import write_raspa_input_file
 from utils.preprocess import raspa_create_cif
 
-from utils.pickIDs import xyz_to_df
-from utils.pickIDs import determine_centroid
-from utils.pickIDs import pick_centre_id
-from utils.pickIDs import pick_z_ids
-from utils.pickIDs import pick_xz_ids
+from utils.pickIDs2 import cif_to_df
+from utils.pickIDs2 import determine_centroid
+from utils.pickIDs2 import pick_centre_id
+from utils.pickIDs2 import pick_z_ids
+from utils.pickIDs2 import pick_xz_ids
 
 
 _DEBUG = True
@@ -29,7 +29,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
 
     print("==================RUNNING RASPA==================")
 
-    mof_name = "ZIF-8"
+    mof_name = "Cd3BTB2"
 
     sim_input_file_path = write_raspa_input_file(
         simulation_type="MonteCarlo",
@@ -60,12 +60,12 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         print("SambVca calculator file not present.")
     
 
-    xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/ZIF-8.xyz"
+    xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/Cd3BTB2.xyz"
+    cif_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/Cd3BTB2.cif"
 
-    # a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val=read_dimensions(cif_dest_path)
-    # r = get_transformation_matrix(a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val)
 
-    all_atoms_df = xyz_to_df(xyz_dest_path)
+
+    all_atoms_df = cif_to_df(cif_dest_path)
     closest_metal_atoms_df, all_metal_atoms_df = determine_centroid(all_atoms_df)
 
 
