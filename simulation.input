@@ -1,0 +1,7 @@
+SimulationType     MonteCarlo
+NumberofCycles     1
+PrintEvery     1
+
+Framework      0
+FrameworkName      ZIF-8
+UnitCells      2 2 2
