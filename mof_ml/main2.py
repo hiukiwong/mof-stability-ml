@@ -10,7 +10,7 @@ from py2sambvca_v2 import Py2sambvca
 from utils import plot
 from utils import str_handling
 
-from utils.dimensions import read_dimensions
+# from utils.dimensions import read_dimensions
 
 from utils.preprocess import write_raspa_input_file
 from utils.preprocess import raspa_create_cif
@@ -20,6 +20,8 @@ from utils.pickIDs2 import determine_centroid
 from utils.pickIDs2 import pick_centre_id
 from utils.pickIDs2 import pick_z_ids
 from utils.pickIDs2 import pick_xz_ids
+from utils.pickIDs2 import xyz_to_df
+from utils.pickIDs2 import get_atom_del_list
 
 
 _DEBUG = True
@@ -73,8 +75,10 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
     z_ax_ids, z_axis_atoms = pick_z_ids (central_id, centre_atom, all_atoms_df)
     xz_plane_ids = pick_xz_ids(central_id, centre_atom, all_atoms_df)
 
-    print(central_id, z_ax_ids, xz_plane_ids)
-    # print(all_ligand_atoms_df)
+    # print(central_id, z_ax_ids, xz_plane_ids)
+    all_atoms_cartesian_df = xyz_to_df(xyz_dest_path)
+    atoms_to_del_ids = get_atom_del_list(central_id, centre_atom, all_atoms_cartesian_df)
+    # print(atoms_to_del_ids)
 
     # Start the timer for this calculation.
     start_time = time.time()
@@ -82,9 +86,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
     center_atom = central_id
     z_ax_atoms = [z_ax_ids[0]]
     xz_plane_atoms = [xz_plane_ids[0]]
-    # center_atom = [162]
-    # z_ax_atoms = [66]
-    # xz_plane_atoms = [159]
+   
     print(center_atom, z_ax_atoms, xz_plane_atoms)
 
     center_atom_str = "c" + str_handling.atoms_to_string(center_atom)
@@ -124,6 +126,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         z_ax_atom_ids=z_ax_atoms,
         xz_plane_atoms_ids=xz_plane_atoms,
         path_to_sambvcax=str(sambvca21_full_path),
+        atoms_to_delete_ids=atoms_to_del_ids
     )
 
     # inp_filepath = "sample.inp"
