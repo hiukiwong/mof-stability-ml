@@ -73,17 +73,3 @@ def get_atom_del_list (central_id, centre_atom, all_atoms_cartesian_df) -> list:
     atoms_to_del = all_atoms_cartesian_df[all_atoms_cartesian_df['distance'] > 12]
     atoms_to_del_ids = list(atoms_to_del.index)
     return atoms_to_del_ids
-
-# xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/Cd3BTB2.xyz"
-# cif_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/Cd3BTB2.cif"
-
-# all_atoms_df = cif_to_df(cif_dest_path)
-# closest_metal_atoms_df, all_metal_atoms_df = determine_centroid(all_atoms_df)
-
-
-# central_id, centre_atom = pick_centre_id(closest_metal_atoms_df)
-# z_ax_ids, z_axis_atoms = pick_z_ids(central_id, centre_atom, all_atoms_df)
-# xz_plane_ids = pick_xz_ids(central_id, centre_atom, all_atoms_df)
-# all_atoms_cartesian_df = xyz_to_df(xyz_dest_path)
-# atoms_to_del_ids = get_atom_del_list(central_id, centre_atom, all_atoms_cartesian_df)
-# print(atoms_to_del_ids)

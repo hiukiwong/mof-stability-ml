@@ -31,7 +31,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
 
     print("==================RUNNING RASPA==================")
 
-    mof_name = "Cd3BTB2"
+    mof_name = "UIO-66"
 
     sim_input_file_path = write_raspa_input_file(
         simulation_type="MonteCarlo",
@@ -62,8 +62,8 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         print("SambVca calculator file not present.")
     
 
-    xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/Cd3BTB2.xyz"
-    cif_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/Cd3BTB2.cif"
+    xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/UIO-66.xyz"
+    cif_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/UIO-66.cif"
 
 
 
