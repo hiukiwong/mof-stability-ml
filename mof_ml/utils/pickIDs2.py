@@ -5,9 +5,11 @@ import numpy as np
 from scipy.spatial import distance
 from ref_data.metal_set import metal_symbols
 
+##This version picks atoms based off of the cif file of the structure and with main2.py
 
 cif_dest_path='/home/hiuki/mof-stability-ml/RASPA_Output/IRMOF-1.cif'
 def cif_to_df(cif_dest_path: str) -> pd.DataFrame:
+    ## The skiprows is hardcoded and doesn't work for every cif - there should ideally be a boolean function prior to this so that pandas starts reading from the first line that contains the coordinates, no matter how many lines come before
     all_atoms_df = pd.read_table(cif_dest_path, skiprows=36, delim_whitespace=True, names=['atom label', 'atom symbol', 'a', 'b', 'c', 'charge'])
     num_atoms = len(all_atoms_df)
     all_atoms_df.index = pd.RangeIndex(start=1, stop=num_atoms+1, step=1)
@@ -62,6 +64,7 @@ def xyz_to_df(xyz_dest_path: str) -> pd.DataFrame:
     all_atoms_cartesian_df.index = pd.RangeIndex(start=1, stop=num_atoms+1, step=1)
     all_atoms_cartesian_df['xyz'] = tuple(all_atoms_cartesian_df[['x', 'y', 'z']].values)
     return all_atoms_cartesian_df
+
 
 def get_atom_del_list (central_id, centre_atom, all_atoms_cartesian_df) -> list:
     centre_atom = all_atoms_cartesian_df.loc[central_id]

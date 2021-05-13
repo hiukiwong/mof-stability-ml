@@ -7,6 +7,9 @@ from utils.read import read_cloud
 from utils.read import read_contour
 
 
+##Generates 2 kinds of plot according to the data: One is the filled contour plot that is the same as the web interface, and another is a 3D representation for a better understanding of the 2D version.
+##Plots for both top and bottom surfaces
+
 def filled_contour(
     x_coords: np.array, y_coords: np.array, z_coords: np.array, xmin: float, xmax: float, title: str
 ) -> figure:

@@ -29,7 +29,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
 
     print("==================RUNNING RASPA==================")
 
-    mof_name = "ZIF-8"
+    mof_name = "HKUST-1"
 
     sim_input_file_path = write_raspa_input_file(
         simulation_type="MonteCarlo",
@@ -60,10 +60,8 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         print("SambVca calculator file not present.")
     
 
-    xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/ZIF-8.xyz"
+    xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/HKUST-1.xyz"
 
-    # a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val=read_dimensions(cif_dest_path)
-    # r = get_transformation_matrix(a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val)
 
     all_atoms_df = xyz_to_df(xyz_dest_path)
     closest_metal_atoms_df, all_metal_atoms_df = determine_centroid(all_atoms_df)
@@ -74,7 +72,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
     xz_plane_ids = pick_xz_ids(central_id, centre_atom, all_atoms_df)
 
     print(central_id, z_ax_ids, xz_plane_ids)
-    # print(all_ligand_atoms_df)
+ 
 
     # Start the timer for this calculation.
     start_time = time.time()
@@ -82,9 +80,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
     center_atom = central_id
     z_ax_atoms = [z_ax_ids[0]]
     xz_plane_atoms = [xz_plane_ids[0]]
-    # center_atom = [162]
-    # z_ax_atoms = [66]
-    # xz_plane_atoms = [159]
+ 
     print(center_atom, z_ax_atoms, xz_plane_atoms)
 
     center_atom_str = "c" + str_handling.atoms_to_string(center_atom)

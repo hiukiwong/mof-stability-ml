@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.spatial import distance
 from ref_data.metal_set import metal_symbols
 
-
+## This version works with main.py and picks atoms based off the xyz. It doesn't work with triclinic unit cells
 def xyz_to_df(xyz_dest_path: str) -> pd.DataFrame:
     all_atoms_df = pd.read_table(xyz_dest_path, skiprows=2, delim_whitespace=True, names=['atom', 'x', 'y', 'z'])
     num_atoms = len(all_atoms_df)
@@ -41,8 +41,6 @@ def pick_z_ids(central_id, centre_atom, all_atoms_df):
 
 
 def pick_xz_ids(central_id, centre_atom, all_atoms_df):
-    # z_ax_id = z_ax_ids[0]
-    # z_ax_atom = z_axis_atoms.iloc[0]
     x_wanted = centre_atom.x
     y_wanted = centre_atom.y
     z_wanted = centre_atom.z

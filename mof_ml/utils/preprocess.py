@@ -7,6 +7,8 @@ import time
 import numpy as np
 from pathlib import Path
 
+##Writes input file to RASPA and cleans up all output files from RASPA such that there is only the cif of the supercell obtained.
+
 def write_raspa_input_file(simulation_type, number_of_cycles, print_every, framework, framework_name, unit_cells):
     molecule_name_list = []
     simulation_file_name = "simulation.input"
@@ -42,17 +44,3 @@ def raspa_create_cif(mof_name):
     shutil.rmtree("Movies")
     return cif_dest_path, xyz_dest_path
 
-
-# mof_name = "UIO-66"
-# sim_input_file_path = write_raspa_input_file(
-#     simulation_type="MonteCarlo",
-#     number_of_cycles=1,
-#     print_every=1,
-#     framework=0,
-#     framework_name=mof_name,
-#     unit_cells=[2, 2, 2]
-# )
-# path_to_raspa = "/home/hiuki/RASPA/src/simulate"
-# subprocess.run([path_to_raspa, sim_input_file_path])
-# cif_dest_path, xyz_dest_path = raspa_create_cif(mof_name)
-# subprocess.run(["obabel",  "-icif", cif_dest_path, "-oxyz", "-O", xyz_dest_path])

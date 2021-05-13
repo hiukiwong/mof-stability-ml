@@ -1,6 +1,7 @@
 import os, re, math
 import numpy as np
-
+4
+##Reads the cif and obtains unit cell parameters and also generates the transformation matrix to convert from fractional coordinates to Cartesian coordinates
 
 def read_dimensions(cif_dest_path):
     with open(cif_dest_path, "r") as file:
@@ -55,9 +56,3 @@ def get_transformation_matrix(a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_va
     r[2, 2] = sing / (c_dim * volume)
     return r
 
-
-
-# print(a_dim, b_dim, c_dim, alpha_val, beta_val, gamma_val)
-# print(r)
-
-# r = math.sqrt(a_dim**2+b_dim**2+c_dim**2+2*a_dim*b_dim*(math.cos(gamma_val))+2*a_dim*c_dim*(math.cos(beta_val))+2*b_dim*c_dim*(math.cos(alpha_val)))

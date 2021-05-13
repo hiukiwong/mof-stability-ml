@@ -10,7 +10,7 @@ from py2sambvca_v2 import Py2sambvca
 from utils import plot
 from utils import str_handling
 
-# from utils.dimensions import read_dimensions
+
 
 from utils.preprocess import write_raspa_input_file
 from utils.preprocess import raspa_create_cif
@@ -24,6 +24,9 @@ from utils.pickIDs2 import xyz_to_df
 from utils.pickIDs2 import get_atom_del_list
 
 
+
+##One problem currently observed is if the file name is too long, the .dats cannot be properly named and come out as .d or .da instead and the plots are unable to be generated
+
 _DEBUG = True
 
 
@@ -31,7 +34,7 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
 
     print("==================RUNNING RASPA==================")
 
-    mof_name = "UIO-66"
+    mof_name = "HKUST-1"
 
     sim_input_file_path = write_raspa_input_file(
         simulation_type="MonteCarlo",
@@ -62,8 +65,8 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
         print("SambVca calculator file not present.")
     
 
-    xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/UIO-66.xyz"
-    cif_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/UIO-66.cif"
+    xyz_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/HKUST-1.xyz"
+    cif_dest_path = "/home/hiuki/mof-stability-ml/RASPA_Output/HKUST-1.cif"
 
 
 
@@ -75,10 +78,9 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
     z_ax_ids, z_axis_atoms = pick_z_ids (central_id, centre_atom, all_atoms_df)
     xz_plane_ids = pick_xz_ids(central_id, centre_atom, all_atoms_df)
 
-    # print(central_id, z_ax_ids, xz_plane_ids)
     all_atoms_cartesian_df = xyz_to_df(xyz_dest_path)
     atoms_to_del_ids = get_atom_del_list(central_id, centre_atom, all_atoms_cartesian_df)
-    # print(atoms_to_del_ids)
+ 
 
     # Start the timer for this calculation.
     start_time = time.time()
