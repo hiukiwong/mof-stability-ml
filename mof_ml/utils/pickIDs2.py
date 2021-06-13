@@ -21,6 +21,7 @@ def cif_to_df(cif_dest_path: str) -> pd.DataFrame:
 
 
 def determine_centroid(all_atoms_df: pd.DataFrame) -> pd.DataFrame:
+    ##Determines the centroid of the supercell by finding the mean x,y and z coordinates and then calculates the Euclidean distance between each atom in the cell and the centroid
     centroid = (all_atoms_df['a'].mean(), all_atoms_df['b'].mean(), all_atoms_df['c'].mean())
     all_atoms_df['distance'] = all_atoms_df['abc'].apply(lambda row: distance.euclidean(centroid, row))
     all_metal_atoms_df = all_atoms_df.loc[all_atoms_df['atom symbol'].isin(metal_symbols)]
@@ -30,6 +31,7 @@ def determine_centroid(all_atoms_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def pick_centre_id(closest_metal_atoms_df) -> list:
+    ##Selects the first atom with the lowest Euclidean distance from the centroid as the centre atom
     centre_atom = closest_metal_atoms_df.iloc[0]
     central_id = [closest_metal_atoms_df.index[0]]
     print(centre_atom)
@@ -38,6 +40,7 @@ def pick_centre_id(closest_metal_atoms_df) -> list:
 
 
 def pick_z_ids(central_id, centre_atom, all_atoms_df):
+    ##Picks Z axis atoms by going along the c axis from the centre atom
     a_wanted = centre_atom.a
     b_wanted = centre_atom.b
     c_wanted = centre_atom.c
@@ -50,6 +53,7 @@ def pick_z_ids(central_id, centre_atom, all_atoms_df):
 
 
 def pick_xz_ids(central_id, centre_atom, all_atoms_df):
+    ##Picks atoms to define as the x-z plane based on the centre atom
     a_wanted = centre_atom.a
     b_wanted = centre_atom.b
     c_wanted = centre_atom.c
@@ -59,6 +63,7 @@ def pick_xz_ids(central_id, centre_atom, all_atoms_df):
     return xz_plane_ids
 
 def xyz_to_df(xyz_dest_path: str) -> pd.DataFrame:
+    ## Creates a DataFrame using the xyz file of the supercell
     all_atoms_cartesian_df = pd.read_table(xyz_dest_path, skiprows=2, delim_whitespace=True, names=['atom', 'x', 'y', 'z'])
     num_atoms = len(all_atoms_cartesian_df)
     all_atoms_cartesian_df.index = pd.RangeIndex(start=1, stop=num_atoms+1, step=1)
@@ -67,6 +72,7 @@ def xyz_to_df(xyz_dest_path: str) -> pd.DataFrame:
 
 
 def get_atom_del_list (central_id, centre_atom, all_atoms_cartesian_df) -> list:
+    ##Calculates Euclidean distance between centre atom and every atom in the structure and obtains a list of atoms IDs for atoms that are more than 12 Angstroms away from the centre atom
     centre_atom = all_atoms_cartesian_df.loc[central_id]
     x_centre = centre_atom.x
     y_centre = centre_atom.y

@@ -47,10 +47,12 @@ def main() -> None:  # pylint: disable=too-many-locals, too-many-statements
 
     path_to_raspa = "/home/hiuki/RASPA/src/simulate"
 
+    ##Run RASPA to obtain supercell
     subprocess.run([path_to_raspa, sim_input_file_path])
 
     cif_dest_path, xyz_dest_path = raspa_create_cif(mof_name)
 
+    ##Run OBabel to obtain xyz of supercell obtained by RASPA
     subprocess.run(["obabel",  "-icif", cif_dest_path, "-oxyz", "-O", xyz_dest_path])
 
     print("==================RUNNING SAMBVCA==================")

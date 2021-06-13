@@ -10,6 +10,7 @@ from pathlib import Path
 ##Writes input file to RASPA and cleans up all output files from RASPA such that there is only the cif of the supercell obtained.
 
 def write_raspa_input_file(simulation_type, number_of_cycles, print_every, framework, framework_name, unit_cells):
+    ##This function writes the input file to be passed to RASPA
     molecule_name_list = []
     simulation_file_name = "simulation.input"
     f = open(simulation_file_name, "w+")
@@ -24,6 +25,7 @@ def write_raspa_input_file(simulation_type, number_of_cycles, print_every, frame
     # return (molecule_name_list, unit_cells)
 
 def raspa_create_cif(mof_name):
+    ##This function is called after RASPA is run to clean up the output files so only the supercell cif is left behind.
     shutil.rmtree("VTK")
     shutil.rmtree("Restart")
     shutil.rmtree("Output")

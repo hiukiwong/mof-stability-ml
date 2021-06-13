@@ -13,6 +13,7 @@ def xyz_to_df(xyz_dest_path: str) -> pd.DataFrame:
 
 
 def determine_centroid(all_atoms_df: pd.DataFrame) -> pd.DataFrame:
+    ##Determines the centroid of the supercell by finding the mean x,y and z coordinates and then calculates the Euclidean distance between each atom in the cell and the centroid
     centroid = (all_atoms_df['x'].mean(), all_atoms_df['y'].mean(), all_atoms_df['z'].mean())
     all_atoms_df['distance'] = all_atoms_df['xyz'].apply(lambda row: distance.euclidean(centroid, row))
     all_metal_atoms_df = all_atoms_df.loc[all_atoms_df['atom'].isin(metal_symbols)]
@@ -22,6 +23,7 @@ def determine_centroid(all_atoms_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def pick_centre_id(closest_metal_atoms_df) -> list:
+    ##Selects the first atom with the lowest Euclidean distance from the centroid as the centre atom
     centre_atom = closest_metal_atoms_df.iloc[0]
     central_id = [closest_metal_atoms_df.index[0]]
     print(centre_atom)
@@ -29,6 +31,7 @@ def pick_centre_id(closest_metal_atoms_df) -> list:
 
 
 def pick_z_ids(central_id, centre_atom, all_atoms_df):
+    ##Picks z axis atoms by selecting an atom directly above or below the centre atom
     x_wanted = centre_atom.x
     y_wanted = centre_atom.y
     z_wanted = centre_atom.z
@@ -41,6 +44,7 @@ def pick_z_ids(central_id, centre_atom, all_atoms_df):
 
 
 def pick_xz_ids(central_id, centre_atom, all_atoms_df):
+    ##Picks x-z plane atom based on the centre atom
     x_wanted = centre_atom.x
     y_wanted = centre_atom.y
     z_wanted = centre_atom.z
